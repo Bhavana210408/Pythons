@@ -1,0 +1,75 @@
+class song:
+    def __init__(self, song):
+        self.song = song
+        self.next = None
+
+def display(head):
+    temp = head
+    while temp is not None:
+        print(temp.song, end="->")
+        temp = temp.next
+    print("None")
+
+# original linked list
+S1 = song("Poongatruile")
+S2 = song("Rasathi")
+S3 = song("Narumugayae")
+S4 = song("Siragugal")
+S5 = song("Saratu vandi")
+S1.next = S2
+S2.next = S3
+S3.next = S4
+S4.next = S5
+head = S1
+
+print("original linked list:")
+display(head)
+
+# Insert beginning
+S0 = song("Uyire uyire")
+S0.next = head
+head = S0
+print("\nInsert at beginning:")
+display(head)
+
+# Insert end
+S6 = song("Roja")
+temp = head
+while temp.next is not None:
+    temp = temp.next
+temp.next = S6
+print("\nInsert at end:")
+display(head)
+
+# Insert middle
+temp = head
+S7 = song("Narumugayae")
+while temp is not None and temp.song != "Rasathi":
+    temp = temp.next
+S7.next = temp.next
+temp.next = S7
+print("\nInsert at middle:")
+display(head)
+
+# delete at beginning
+head = head.next
+print("\nDeletion at beginning:")
+display(head)
+
+# delete at end
+temp = head
+while temp.next.next is not None:
+    temp = temp.next
+temp.next = None
+print("\nDeletion at end:")
+display(head)
+
+# delete at middle
+temp = head
+while temp.next is not None and temp.next.song != "konja naal":
+    temp = temp.next
+if temp.next is not None:
+    temp.next = temp.next.next
+print("\nDeletion of middle element:")
+display(head)
+
